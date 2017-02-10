@@ -40,6 +40,16 @@ Bill.prototype.getTotal = function() {
 	return total;
 };
 
+Bill.prototype.getTax = function() {
+	var tax = 0;
+	for (var i = 0; i < this.diners.length; i++) {
+		for (var j = 0; j < this.diners[i].dishes.length; j++) {
+			tax += 0.09 * this.diners[i].dishes[j].price;
+		};
+	};
+	return tax;
+};
+
 //Generate a tip which is 20% of the total price.
 Bill.prototype.getTip = function() {
 	var tip = 0;
@@ -75,6 +85,6 @@ var myBill = new Bill();
 myBill.addDiners(Michael, Tony, Nick);
 
 //Print Bill
-console.log(myBill);
-console.log(myBill.getTotal().toFixed(2));
-console.log(myBill.getTip().toFixed(2));
+console.log("Your food total is " + "$" + myBill.getTotal().toFixed(2) + " with a sales tax of: "+ "$" + myBill.getTax().toFixed(2));
+console.log("Thanks! can you please give the waitress: " + "$" + myBill.getTip().toFixed(2) + "," + " for her great customer service!");
+console.log("Waitress: That's 20%! Thanks for the awesome tip!");
